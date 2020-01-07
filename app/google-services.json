@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1071477744744",
+    "firebase_url": "https://ctn-db.firebaseio.com",
+    "project_id": "ctn-db",
+    "storage_bucket": "ctn-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071477744744:android:ca0ae8da250299685f47dd",
+        "android_client_info": {
+          "package_name": "com.kritsanadum.ctndb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071477744744-8kj9uitc04om3tfbis3bt1760s3n9jra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kritsanadum.ctndb",
+            "certificate_hash": "670a5dc3f28ff568e20a013195f12cfc5b96c318"
+          }
+        },
+        {
+          "client_id": "1071477744744-cotk8lu05gsic1k94gkj0h578osvjav8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHevNzFY2fIy7DlGqebY2na4gF8vXG43Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071477744744-cotk8lu05gsic1k94gkj0h578osvjav8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
