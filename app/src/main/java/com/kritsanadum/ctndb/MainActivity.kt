@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        var contactKey = arrayListOf<String>()
+        var arrList = arrayListOf<String>()
 
 //        myRef.setValue("Hello, Computer Software.")
 
@@ -36,18 +41,20 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 var data = dataSnapshot!!.children
-                var arrList = arrayListOf<String>()
+                    arrList = arrayListOf<String>()
+                    contactKey = arrayListOf<String>()
                 var adapter = ArrayAdapter(applicationContext ,android.R.layout.simple_list_item_1,arrList)
                 lv_result.adapter = adapter
 
                 data.forEach {
+                    contactKey.add(it.key.toString())
                     arrList.add(it.value.toString())
                     //alert
 //                    Toast.makeText(applicationContext,"${it.value}",Toast.LENGTH_LONG).show()
 
                 }
 
-                 adapter = ArrayAdapter(applicationContext ,android.R.layout.simple_list_item_1,arrList)
+                adapter = ArrayAdapter(applicationContext ,android.R.layout.simple_list_item_1,arrList)
                 lv_result.adapter = adapter
 
 
@@ -59,6 +66,42 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        lv_result.setOnItemClickListener { parent, view, position, id ->
+
+//            Toast.makeText(this,contactKey.get(position)+" , "+arrList.get(position),Toast.LENGTH_LONG).show()
+
+            var builder = AlertDialog.Builder(this@MainActivity)
+
+            builder.setTitle("กรุณาเลือก")
+
+            builder.setMessage("กรุณาทำรายการ")
+
+            var editText = EditText(this)
+            editText.setText(arrList.get(position))
+
+            builder.setView(editText)
+
+
+
+            builder.setPositiveButton("แก้ไข"){dialog, which ->
+
+//                Toast.makeText(this,editText.text.toString(),Toast.LENGTH_LONG).show()
+
+                myRef.child(contactKey.get(position)).setValue(editText.text.toString())
+
+            }
+
+            builder.setNegativeButton("ลบ"){dialog, which ->
+
+                myRef.child(contactKey.get(position)).removeValue()
+
+            }
+
+            var dialog = builder.create()
+
+            dialog.show()
+        }
 
 
 
